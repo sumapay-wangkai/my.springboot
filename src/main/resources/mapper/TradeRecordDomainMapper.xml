@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.wk.springboot4mybaits.dao.TradeRecordDomainMapper" >
+  <resultMap id="BaseResultMap" type="demo.wk.springboot4mybaits.domain.TradeRecordDomain" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="merchant_code" property="merchantCode" jdbcType="VARCHAR" />
+    <result column="merchant_order_id" property="merchantOrderId" jdbcType="INTEGER" />
+    <result column="trade_id" property="tradeId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, merchant_code, merchant_order_id, trade_id, status, create_time, modify_time, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from trade_record
+    order by id desc
+      limit #{start},${length}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from trade_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="demo.wk.springboot4mybaits.domain.TradeRecordDomain" >
+    insert into trade_record (id, merchant_code, merchant_order_id, 
+      trade_id, status, create_time, 
+      modify_time, remark)
+    values (#{id,jdbcType=INTEGER}, #{merchantCode,jdbcType=VARCHAR}, #{merchantOrderId,jdbcType=INTEGER}, 
+      #{tradeId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="demo.wk.springboot4mybaits.domain.TradeRecordDomain" >
+    insert into trade_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="merchantCode != null" >
+        merchant_code,
+      </if>
+      <if test="merchantOrderId != null" >
+        merchant_order_id,
+      </if>
+      <if test="tradeId != null" >
+        trade_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantCode != null" >
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOrderId != null" >
+        #{merchantOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="demo.wk.springboot4mybaits.domain.TradeRecordDomain" >
+    update trade_record
+    <set >
+      <if test="merchantCode != null" >
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOrderId != null" >
+        merchant_order_id = #{merchantOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeId != null" >
+        trade_id = #{tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="demo.wk.springboot4mybaits.domain.TradeRecordDomain" >
+    update trade_record
+    set merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      merchant_order_id = #{merchantOrderId,jdbcType=INTEGER},
+      trade_id = #{tradeId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
