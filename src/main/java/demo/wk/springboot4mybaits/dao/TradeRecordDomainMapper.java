@@ -19,4 +19,8 @@ public interface TradeRecordDomainMapper {
     int updateByPrimaryKey(TradeRecordDomain record);
 
     List<TradeRecordDomain> getAll(@Param("start") int start,@Param("length")int length);
+
+    TradeRecordDomain getLast();
+
+
 }

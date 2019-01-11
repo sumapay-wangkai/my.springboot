@@ -14,6 +14,12 @@ import java.util.List;
  **/
 public interface TradeRecordService {
     List<TradeRecordDomain> getList(int start, int length);
+
     void randomInsert();
+
     TradeRecordDomain get(int id);
+
+    void testTransactionManager();
+
+    void myTransactionManager(TradeRecordDomain tradeRecordDomain,String remark,boolean flag)throws Exception ;
 }

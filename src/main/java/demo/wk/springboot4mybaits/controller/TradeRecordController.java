@@ -45,6 +45,12 @@ public class TradeRecordController {
         return completeCount;
     }
 
+    @RequestMapping("/testTransaction")
+    public String testTransaction() {
+        tradeRecordService.testTransactionManager();
+        return "test complete";
+    }
+
 
     @RequestMapping("/test")
     public String test() {

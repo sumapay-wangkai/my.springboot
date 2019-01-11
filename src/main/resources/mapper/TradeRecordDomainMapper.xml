@@ -29,7 +29,13 @@
     order by id desc
       limit #{start},${length}
   </select>
-
+  <select id="getLast" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from trade_record
+    order by id desc
+    limit 0,1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from trade_record
     where id = #{id,jdbcType=INTEGER}
