@@ -1,16 +1,15 @@
 package demo.wk.springboot4mybaits.util;
 
-import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,18 +23,21 @@ public class MyHttpClient {
     public static String doGet(String url, Map<String, String> headers) {
         CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(url);
-
+        CloseableHttpResponse closeableHttpResponse = null;
+        BufferedInputStream bis = null;
+        InputStream inputStream = null;
+        ByteArrayOutputStream buf = null;
         if (headers != null) {
             for (String key : headers.keySet()) {
                 httpGet.addHeader(key, headers.get(key));
             }
         }
         try {
-            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);
-            InputStream inputStream = closeableHttpResponse.getEntity().getContent();
+            closeableHttpResponse = closeableHttpClient.execute(httpGet);
+            inputStream = closeableHttpResponse.getEntity().getContent();
 
-            BufferedInputStream bis = new BufferedInputStream(inputStream);
-            ByteArrayOutputStream buf = new ByteArrayOutputStream();
+            bis = new BufferedInputStream(inputStream);
+            buf = new ByteArrayOutputStream();
             int result = bis.read();
             while (result != -1) {
                 buf.write((byte) result);
@@ -44,17 +46,22 @@ public class MyHttpClient {
             String str = buf.toString();
             return str;
 
-
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                bis.close();
+                buf.close();
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
 
         return null;
     }
-
-
-
 
 
     public static void main(String[] args) {
