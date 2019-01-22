@@ -4,10 +4,7 @@ import demo.wk.springboot4mybaits.util.MyHttpClient;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @ClassName Test1
@@ -29,7 +26,7 @@ public class Test1 {
         headers.put("Accept-Language", "zh-CN,zh;q=0.9,zh-TW;q=0.8");
         headers.put("Cache-Control", "no-cache");
         headers.put("Connection", "keep-alive");
-        headers.put("Cookie", "__jdv=67462917|direct|-|none|-|1547082068071; shshshfpb=27021c7e0c05948c2811232a1bc1537f15bc53875b8570931f886b1a52; shshshfpa=2c133db0-fa50-d135-898f-cf247432c58d-1547114315; componentsid=4fd440fa-205d-4318-9044-fe1fb7e1f292; componentsid_pre=446c71b6-a44b-49a4-a989-5212e246e785; PCSYCityID=1; TrackID=1SWCcoakK3QPvpSKdeLPCmJlWrnIcDzkeXDf_vjcI7qMv1WhXZAh4-g7q35v6zbfyWFrgPrZJLMr0QwE8wIzrfGX_dbDeprzutUBl3v6GUR4; pinId=X4hj0ln7LRd3WdRUjvDbZg; pin=%E9%B9%B0%E6%89%AC%E5%BD%B1%E9%80%9D; unick=%E9%B9%B0%E6%89%AC%E5%BD%B1%E9%80%9D; ceshi3.com=000; _tp=bSD8HBlsqVPqfGfPjc%2FHUNwBUhM1bm2lLFugE7hxDZzUjVz6F%2Bp4C6Ce8a7xxSQw; _pst=%E9%B9%B0%E6%89%AC%E5%BD%B1%E9%80%9D; user-key=7579ab99-7b9e-4193-a998-2fdc86d18163; shshshfp=6ad2130e1e0494d286f149e1d014b4c9; ipLocation=%u5317%u4eac; ipLoc-djd=1-2800-2851-0.740058167; cn=0; __jdu=15470820680701341087814; thor=5116EBFD623D9F28E6831D0404C4283236C0117405806E5C9CE6F7F85189192FA87894B8F9D7F7E2CFBF63D2917D982FE4BC7A24166A5D110606579ADBDE84C1D241B1DA7329D1C76CC8D24FFB2330A80A7A2FC945A16062CD6E2E44F4B7D96FECFBE10EE727818F0AAF44D5A5DBBDB9DBF6B19769AF0BD2888831695BF3E8BC; 3AB9D23F7A4B3C9B=ONCBSDSZPL33HXQ2U76LMAU3PI7LNOJ2UZ54EAIHLC5P2PVGQ3VWOG3NPKYECVE4MUO2YE4VJ64RQVYCBXTM22Q4A4; __jdc=62267774; jd.erp.lang=zh_CN; erp1.jd.com=C1BD219BE621097E2705DFDED61637D3EE822FC32A6C70E9543B626B80FEDE592A6469E86E29B6BBDBE73E8EE2F8FECF09FF8D7C324DCE91021E5EEBA581B4FB1DA15ADA7946C8069F063A4EC562AA0D; sso.jd.com=83a98e7a4f9f46cc8e5900d2bb0e1edb; __jda=62267774.15470820680701341087814.1547082068.1547625357.1547628937.32; __jdb=62267774.21.15470820680701341087814|32.1547628937");
+        headers.put("Cookie", "__jdv=67462917|direct|-|none|-|1547082068071; shshshfpb=27021c7e0c05948c2811232a1bc1537f15bc53875b8570931f886b1a52; shshshfpa=2c133db0-fa50-d135-898f-cf247432c58d-1547114315; componentsid_pre=446c71b6-a44b-49a4-a989-5212e246e785; PCSYCityID=1; TrackID=1SWCcoakK3QPvpSKdeLPCmJlWrnIcDzkeXDf_vjcI7qMv1WhXZAh4-g7q35v6zbfyWFrgPrZJLMr0QwE8wIzrfGX_dbDeprzutUBl3v6GUR4; pinId=X4hj0ln7LRd3WdRUjvDbZg; pin=%E9%B9%B0%E6%89%AC%E5%BD%B1%E9%80%9D; unick=%E9%B9%B0%E6%89%AC%E5%BD%B1%E9%80%9D; ceshi3.com=000; _tp=bSD8HBlsqVPqfGfPjc%2FHUNwBUhM1bm2lLFugE7hxDZzUjVz6F%2Bp4C6Ce8a7xxSQw; _pst=%E9%B9%B0%E6%89%AC%E5%BD%B1%E9%80%9D; user-key=7579ab99-7b9e-4193-a998-2fdc86d18163; shshshfp=6ad2130e1e0494d286f149e1d014b4c9; ipLocation=%u5317%u4eac; ipLoc-djd=1-2800-2851-0.740058167; cn=0; __jdu=15470820680701341087814; thor=5116EBFD623D9F28E6831D0404C4283236C0117405806E5C9CE6F7F85189192FA87894B8F9D7F7E2CFBF63D2917D982FE4BC7A24166A5D110606579ADBDE84C1D241B1DA7329D1C76CC8D24FFB2330A80A7A2FC945A16062CD6E2E44F4B7D96FECFBE10EE727818F0AAF44D5A5DBBDB9DBF6B19769AF0BD2888831695BF3E8BC; jd.erp.lang=zh_CN; erp1.jd.com=388F4265E5B6B5BE6485D7EAEE05C13849089DBBCE8E736EAEC10A2A96B7057480FA5E699097F3F67F6D0F9B62EC4658D071D93234BD6296EB2C5781EA7368610720A91A497DE8D626F14F3195B5CAC9; sso.jd.com=4cfd3c78ac344015838fbae015d53332; 3AB9D23F7A4B3C9B=ONCBSDSZPL33HXQ2U76LMAU3PI7LNOJ2UZ54EAIHLC5P2PVGQ3VWOG3NPKYECVE4MUO2YE4VJ64RQVYCBXTM22Q4A4; componentsid=b7fffe3b-b2aa-4379-ba4e-4eaeabf8a754; __jda=62267774.15470820680701341087814.1547082068.1547688352.1547691384.37; __jdc=62267774; __jdb=62267774.4.15470820680701341087814|37.1547691384");
         headers.put("Host", "cjg-api.jd.com");
         headers.put("Origin", "http://cjg.jd.com");
         headers.put("Pragma", "no-cache");
@@ -44,9 +41,11 @@ public class Test1 {
 
     @Test
     public void test(){
+        System.out.println("start  at "+ new Date());
         for(String url : urls){
             test1(url);
         }
+        System.out.println("end at "+ new Date());
     }
 
 
@@ -57,7 +56,8 @@ public class Test1 {
         long c = 0 ;
         for (int i = 0; i < count; i++) {
             long start = System.currentTimeMillis();
-            MyHttpClient.doGet(url,headers);
+           String result =  MyHttpClient.doGet(url,headers);
+        //    System.out.println("result"+result);
             long end = System.currentTimeMillis();
 
             long spend = end - start;

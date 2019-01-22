@@ -1,5 +1,6 @@
 package demo.wk.springboot4mybaits.util;
 
+import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -34,6 +35,13 @@ public class MyHttpClient {
         }
         try {
             closeableHttpResponse = closeableHttpClient.execute(httpGet);
+
+            if (closeableHttpResponse.getStatusLine().getStatusCode() != 200) {
+                System.out.println("status:" + closeableHttpResponse.getStatusLine());
+
+            }
+
+
             inputStream = closeableHttpResponse.getEntity().getContent();
 
             bis = new BufferedInputStream(inputStream);
