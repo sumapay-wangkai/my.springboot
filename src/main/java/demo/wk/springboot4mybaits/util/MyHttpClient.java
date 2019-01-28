@@ -1,8 +1,13 @@
 package demo.wk.springboot4mybaits.util;
 
-import org.apache.http.StatusLine;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
@@ -10,7 +15,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,8 +45,6 @@ public class MyHttpClient {
                 System.out.println("status:" + closeableHttpResponse.getStatusLine());
 
             }
-
-
             inputStream = closeableHttpResponse.getEntity().getContent();
 
             bis = new BufferedInputStream(inputStream);
@@ -66,17 +69,14 @@ public class MyHttpClient {
             }
 
         }
-
-
         return null;
     }
 
 
     public static void main(String[] args) {
-        String url = "http://www.baidu.com";
-        String result = doGet(url, new HashMap<>());
-        System.out.println("result" + result);
+
     }
+
 
 
 }
