@@ -74,5 +74,34 @@ public class Test1 {
         System.out.println("接口 " + url + " 共调用："+count+"次，平均耗时：" + avg + "毫秒，最大耗时："+max+"毫秒，其中大于1秒耗时的共"+c+"次");
     }
 
+    public static void main(String[] args) {
+        String  a = "a";
+        int count = 100000;
+
+        long start1 = System.currentTimeMillis();
+        for(int i =0;i<count;i++){
+            isEmpty(a);
+        }
+        long end1 = System.currentTimeMillis();
+        long spend1 = end1 - start1;
+        System.out.println("spend1="+spend1);
+
+        long start2 = System.currentTimeMillis();
+        for(int i =0;i<count;i++){
+            isBlank(a);
+        }
+        long end2 = System.currentTimeMillis();
+        long spend2 = end2 - start2;
+        System.out.println("spend2="+spend2);
+
+    }
+
+    public static boolean isEmpty(String str){
+        return str == null || "".equals(str.trim());
+    }
+    public static boolean isBlank(String str){
+        return str == null || str.trim().length() ==0;
+    }
+
 
 }
