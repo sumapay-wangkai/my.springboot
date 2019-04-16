@@ -21,7 +21,16 @@
     from trade_record
     where id = #{id,jdbcType=INTEGER}
   </select>
-
+  <select id="getSeq" resultType="java.lang.Integer">
+    select
+     nextval("SEQ_TRZ_MEMBER_NO")
+     from dual
+  </select>
+    <select id="getSeqEx" resultType="java.lang.Integer">
+    select
+     mynextval()
+     from dual
+  </select>
   <select id="getAll" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />

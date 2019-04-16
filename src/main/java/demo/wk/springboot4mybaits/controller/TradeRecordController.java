@@ -27,6 +27,23 @@ public class TradeRecordController {
         return result;
     }
 
+    @RequestMapping("/getSeq")
+    public String getSeq(@RequestParam(value = "seqName", required = true) String seqName) {
+        String result = JSONObject.toJSONString(tradeRecordService.getSeq(seqName));
+        return result;
+    }
+
+
+    @RequestMapping("/testSeq")
+    public String testSeq(@RequestParam(value = "seqName", required = false,defaultValue = "SEQ_TRZ_MEMBER_NO") String seqName,
+                          @RequestParam(value = "concurrent", required = false,defaultValue = "100") int concurrent,
+                            @RequestParam(value = "count", required = false,defaultValue = "100") int count) {
+        String result = tradeRecordService.testSeq(seqName,concurrent,count);
+        return result;
+    }
+
+
+
     @RequestMapping("/getList")
     public String getList(@RequestParam(value = "start", defaultValue = "0") int start,
                           @RequestParam(value = "end", defaultValue = "10") int end) {

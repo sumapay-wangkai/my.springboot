@@ -12,6 +12,8 @@ public interface TradeRecordDomainMapper {
 
     int insertSelective(TradeRecordDomain record);
 
+    int getSeq();
+    int getSeqEx();
     TradeRecordDomain selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(TradeRecordDomain record);

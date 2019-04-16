@@ -19,6 +19,10 @@ public interface TradeRecordService {
 
     TradeRecordDomain get(int id);
 
+    int getSeq(String seqName);
+
+    String testSeq(String seqName,int concurrent,int count);
+
     void testTransactionManager();
 
     void myTransactionManager(TradeRecordDomain tradeRecordDomain,String remark,boolean flag)throws Exception ;
